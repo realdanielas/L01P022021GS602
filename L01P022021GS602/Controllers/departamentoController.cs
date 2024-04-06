@@ -32,7 +32,7 @@ namespace L01P022021GS602.Controllers
 
             return Ok(listadoDepartamento);
         }
-        /*
+        
         //Método para buscar por ID
         [HttpGet]
         [Route("GetById/{id}")]
@@ -40,29 +40,29 @@ namespace L01P022021GS602.Controllers
         public IActionResult Get(int id)
         {
             Departadmento? departadmento = (from d in _notasContexto.departamento
-                                where m.id_materia == id
-                                select m).FirstOrDefault();
+                                where d.id_departamento == id
+                                select d).FirstOrDefault();
 
-            if (materia == null)
+            if (departadmento == null)
             {
                 return NotFound();
 
             }
 
-            return Ok(materia);
+            return Ok(departadmento);
         }
 
         //Método para crear o insertar registros
         [HttpPost]
         [Route("Add")]
 
-        public IActionResult GuardarMateria([FromBody] Materia materia)
+        public IActionResult GuardarDepartamento ([FromBody] Departadmento departamento)
         {
             try
             {
-                _notasContexto.materia.Add(materia);
+                _notasContexto.departamento.Add(departamento);
                 _notasContexto.SaveChanges();
-                return Ok(materia);
+                return Ok(departamento);
             }
             catch (Exception ex)
             {
@@ -74,44 +74,42 @@ namespace L01P022021GS602.Controllers
         [HttpPut]
         [Route("Actualizar/{id}")]
 
-        public IActionResult ActualizarMateria(int id, [FromBody] Materia materiaModificar)
+        public IActionResult ActualizarDepartamento(int id, [FromBody] Departadmento departamentoModificar)
         {
-            Materia? materiaActual = (from m in _notasContexto.materia
-                                      where m.id_materia == id
-                                      select m).FirstOrDefault();
+            Departadmento? departamentoActual = (from d in _notasContexto.departamento
+                                      where d.id_departamento == id
+                                      select d).FirstOrDefault();
 
-            if (materiaActual == null)
+            if (departamentoActual == null)
             { return NotFound(); }
 
-            materiaActual.materia_nombre = materiaModificar.materia_nombre;
-            materiaActual.unidades_valorativas = materiaModificar.unidades_valorativas;
-            materiaActual.estado = materiaModificar.estado;
+            departamentoActual.departamento_nombre = departamentoModificar.departamento_nombre;
 
 
-            _notasContexto.Entry(materiaActual).State = EntityState.Modified;
+            _notasContexto.Entry(departamentoActual).State = EntityState.Modified;
             _notasContexto.SaveChanges();
 
-            return Ok(materiaModificar);
+            return Ok(departamentoModificar);
         }
 
         //Método para eliminar un registro
         [HttpPut]
         [Route("Eliminar/{id}")]
-        public IActionResult EliminarMateria(int id)
+        public IActionResult EliminarDepartamento(int id)
         {
-            Materia? materia = (from m in _notasContexto.materia
-                                where m.id_materia == id
-                                select m).FirstOrDefault();
+            Departadmento? departadmento = (from d in _notasContexto.departamento
+                                where d.id_departamento == id
+                                select d).FirstOrDefault();
 
-            if (materia == null)
+            if (departadmento == null)
             { return NotFound(); }
 
-            _notasContexto.materia.Attach(materia);
-            _notasContexto.materia.Remove(materia);
+            _notasContexto.departamento.Attach(departadmento);
+            _notasContexto.departamento.Remove(departadmento);
             _notasContexto.SaveChanges();
 
-            return Ok(materia);
+            return Ok(departadmento);
 
-        }*/
+        }
     }
 }
