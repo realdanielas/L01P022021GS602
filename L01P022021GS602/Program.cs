@@ -14,12 +14,6 @@ namespace L01P022021GS602
 
             var app = builder.Build();
 
-            //Inyección por dependencia de string de conexión al contexto
-            builder.Services.AddDbContext<notasContext>(options =>
-                     options.UseSqlServer(
-                         builder.Configuration.GetConnectionString("notasDbConnection")
-                         ));
-
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

@@ -1,6 +1,7 @@
 using L01P022021GS602.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WebApplication1.Models;
 
 namespace L01P022021GS602.Controllers
 {
